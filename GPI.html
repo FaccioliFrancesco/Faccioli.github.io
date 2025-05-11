@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualità Aria e Acqua - Peschiera del Garda</title>
+    <style>
+        /* CSS - da personalizzare (compito di Faccioli) */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .image-gallery img {
+            width: 30%;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Monitoraggio Ambientale - Peschiera del Garda</h1>
+        <p>Analisi della qualità dell'aria e dell'acqua attraverso dati satellitari ESA</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#aria">Qualità dell'Aria</a>
+        <a href="#acqua">Qualità dell'Acqua</a>
+        <a href="#metodologia">Metodologia</a>
+        <a href="#gruppo">Il Gruppo</a>
+    </nav>
+
+    <div class="container">
+        <section id="home" class="section">
+            <h2>Introduzione</h2>
+            <p>Questo progetto analizza la qualità dell'aria e dell'acqua nella zona di Peschiera del Garda utilizzando dati satellitari dell'ESA EO Browser.</p>
+            <p>I dati raccolti ci permettono di monitorare:</p>
+            <ul>
+                <li>Concentrazione di NO2 e particolato nell'aria</li>
+                <li>Temperatura e qualità delle acque del Lago di Garda</li>
+                <li>Variazioni stagionali degli inquinanti</li>
+            </ul>
+        </section>
+
+        <section id="aria" class="section">
+            <h2>Qualità dell'Aria</h2>
+            <div class="image-gallery">
+                <!-- Inserire qui le immagini satellitari sulla qualità dell'aria -->
+                <img src="no2_map.jpg" alt="Mappa concentrazione NO2">
+                <img src="pm25_map.jpg" alt="Mappa particolato PM2.5">
+                <img src="air_quality_index.jpg" alt="Indice qualità aria">
+            </div>
+            <h3>Dati principali</h3>
+            <table>
+                <tr>
+                    <th>Parametro</th>
+                    <th>Valore</th>
+                    <th>Trend</th>
+                </tr>
+                <tr>
+                    <td>NO2</td>
+                    <td>XX μg/m³</td>
+                    <td>↑/↓/→</td>
+                </tr>
+                <tr>
+                    <td>PM2.5</td>
+                    <td>XX μg/m³</td>
+                    <td>↑/↓/→</td>
+                </tr>
+                <tr>
+                    <td>PM10</td>
+                    <td>XX μg/m³</td>
+                    <td>↑/↓/→</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="acqua" class="section">
+            <h2>Qualità dell'Acqua</h2>
+            <div class="image-gallery">
+                <!-- Inserire qui le immagini satellitari sulla qualità dell'acqua -->
+                <img src="water_temp.jpg" alt="Temperatura acqua">
+                <img src="chlorophyll.jpg" alt="Concentrazione clorofilla">
+                <img src="turbidity.jpg" alt="Torbidità acqua">
+            </div>
+            <h3>Dati principali</h3>
+            <table>
+                <tr>
+                    <th>Parametro</th>
+                    <th>Valore</th>
+                    <th>Trend</th>
+                </tr>
+                <tr>
+                    <td>Temperatura</td>
+                    <td>XX °C</td>
+                    <td>↑/↓/→</td>
+                </tr>
+                <tr>
+                    <td>Clorofilla</td>
+                    <td>XX mg/m³</td>
+                    <td>↑/↓/→</td>
+                </tr>
+                <tr>
+                    <td>Torbidità</td>
+                    <td>XX NTU</td>
+                    <td>↑/↓/→</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="metodologia" class="section">
+            <h2>Metodologia</h2>
+            <p>Abbiamo utilizzato ESA EO Browser per acquisire i dati satellitari con le seguenti caratteristiche:</p>
+            <ul>
+                <li>Satellite: Sentinel-5P (per qualità aria)</li>
+                <li>Satellite: Sentinel-2/3 (per qualità acqua)</li>
+                <li>Periodo di analisi: [inserire date]</li>
+                <li>Risoluzione spaziale: [inserire dettagli]</li>
+            </ul>
+            <p>I dati sono stati elaborati utilizzando [strumenti utilizzati] e visualizzati tramite mappe tematiche.</p>
+        </section>
+
+        <section id="gruppo" class="section">
+            <h2>Il Gruppo</h2>
+            <p>Gruppo 8:</p>
+            <ul>
+                <li>Faccioli: Ricerca immagini e CSS</li>
+                <li>Massafra: Creazione sito HTML</li>
+            </ul>
+            <p>Progetto realizzato per [nome del corso/istituto].</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2023 Gruppo 8 - Qualità Aria e Acqua Peschiera del Garda</p>
+        <p>Dati forniti da ESA EO Browser | Pubblicato su GitHub Pages</p>
+    </footer>
+</body>
+</html>
