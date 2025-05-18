@@ -53,22 +53,37 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+        
+        /* Stile per la galleria */
         .image-gallery {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 15px;
-            margin: 20px 0;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
         }
-        .image-gallery img {
-            width: 32%;
-            border-radius: 6px;
-            transition: transform 0.3s;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        
+        .gallery-item {
+            flex: 1;
+            min-width: 300px;
+            max-width: calc(50% - 10px);
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
-        .image-gallery img:hover {
-            transform: scale(1.03);
+        
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        
+        .gallery-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
         table {
             width: 100%;
             border-collapse: collapse;
@@ -95,6 +110,56 @@
         .trend-stable {
             color: #fb8c00;
         }
+        
+        /* Stili Fullscreen Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            text-align: center;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 95%;
+            max-height: 95%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        #caption {
+            margin: 15px auto;
+            color: #fff;
+            font-size: 18px;
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .close:hover {
+            color: #ccc;
+        }
+
         footer {
             background-color: #333;
             color: white;
@@ -102,9 +167,12 @@
             padding: 1.5rem;
             margin-top: 40px;
         }
+
+        /* Responsive design */
         @media (max-width: 768px) {
-            .image-gallery img {
-                width: 100%;
+            .gallery-item {
+                max-width: 100%;
+                min-width: 250px;
             }
             .container {
                 width: 95%;
@@ -115,12 +183,11 @@
 <body>
     <header>
         <h1>Monitoraggio Ambientale - Peschiera del Garda</h1>
-        <p>Analisi della qualità dell'aria e dell'acqua attraverso dati satellitari ESA</p>
+        <p>Analisi dell'acqua attraverso dati satellitari ESA</p>
     </header>
 
     <nav>
         <a href="#home">Home</a>
-        <a href="#aria">Qualità dell'Aria</a>
         <a href="#acqua">Qualità dell'Acqua</a>
         <a href="#metodologia">Metodologia</a>
         <a href="#gruppo">Il Gruppo</a>
@@ -129,72 +196,33 @@
     <div class="container">
         <section id="home" class="section">
             <h2>Introduzione</h2>
-            <p>Questo progetto analizza la qualità dell'aria e dell'acqua nella zona di Peschiera del Garda utilizzando dati satellitari dell'ESA EO Browser aggiornati al 2023.</p>
+            <p>Questo progetto analizza dell'acqua nella zona di Peschiera del Garda utilizzando dati satellitari dell'ESA EO Browser aggiornati al 2023.</p>
             <p>Peschiera del Garda, situata sulla sponda sud-orientale del Lago di Garda, è un'area di grande interesse turistico e ambientale. Il monitoraggio dei parametri ambientali è fondamentale per preservare l'ecosistema lacustre e garantire la salute pubblica.</p>
             <p>I dati raccolti ci permettono di monitorare:</p>
             <ul>
-                <li>Concentrazione di NO2, SO2 e particolato nell'aria</li>
                 <li>Temperatura, torbidità e qualità delle acque del Lago di Garda</li>
                 <li>Variazioni stagionali degli inquinanti</li>
                 <li>Impatto del turismo e delle attività antropiche</li>
             </ul>
             <div class="image-gallery">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Peschiera_del_Garda_aerial_view.jpg/1200px-Peschiera_del_Garda_aerial_view.jpg" alt="Vista aerea di Peschiera del Garda">
-                <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/03/copernicus_sentinel-5p_nitrogen_dioxide_over_italy/21885108-1-eng-GB/Copernicus_Sentinel-5P_nitrogen_dioxide_over_Italy_pillars.jpg" alt="Dati satellitari ESA su inquinamento Italia">
-                <img src="https://www.lagodigardasostenibile.it/wp-content/uploads/2020/06/lago-di-garda.jpg" alt="Lago di Garda">
+                <div class="gallery-item">
+                    <img src="c:\Users\Francesco\Downloads\Immagine 2025-05-18 152511.png" 
+                         onclick="openFullscreen(this)" 
+                         alt="Vista aerea di Peschiera del Garda"
+                         class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="c:\Users\Francesco\Downloads\Lago-di-Garda-foto-satellite.jpg" 
+                         onclick="openFullscreen(this)" 
+                         alt="Lago di Garda vista satellite"
+                         class="gallery-img">
+                </div>
             </div>
-        </section>
-
-        <section id="aria" class="section">
-            <h2>Qualità dell'Aria</h2>
-            <div class="image-gallery">
-                <img src="https://apps.sentinel-hub.com/eo-browser/?zoom=10&lat=45.43806&lng=10.69194&themeId=DEFAULT-THEME&visualizationUrl=https%3A%2F%2Fservices.sentinel-hub.com%2Fogc%2Fwms%2Fbd86bcc0-f318-402b-a145-015f85b9427e&datasetId=S5_L2__NO2____&fromTime=2023-06-01T00%3A00%3A00.000Z&toTime=2023-06-30T23%3A59%3A59.999Z&layerId=NO2___TROPOSPHERIC_COLUMN_" alt="Mappa concentrazione NO2 Peschiera del Garda">
-                <img src="https://apps.sentinel-hub.com/eo-browser/?zoom=10&lat=45.43806&lng=10.69194&themeId=DEFAULT-THEME&visualizationUrl=https%3A%2F%2Fservices.sentinel-hub.com%2Fogc%2Fwms%2Fbd86bcc0-f318-402b-a145-015f85b9427e&datasetId=S5_L2__AER_AI_&fromTime=2023-06-01T00%3A00%3A00.000Z&toTime=2023-06-30T23%3A59%3A59.999Z&layerId=AER_AI_340-380" alt="Indice aerosol Peschiera del Garda">
-                <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/04/copernicus_sentinel-5p_shows_air_pollution_remains_low_over_italy/22005363-1-eng-GB/Copernicus_Sentinel-5P_shows_air_pollution_remains_low_over_Italy_pillars.jpg" alt="Qualità aria Italia">
-            </div>
-            <h3>Dati principali (media giugno 2023)</h3>
-            <table>
-                <tr>
-                    <th>Parametro</th>
-                    <th>Valore</th>
-                    <th>Trend (vs 2022)</th>
-                    <th>Limite UE</th>
-                </tr>
-                <tr>
-                    <td>NO2 (biossido di azoto)</td>
-                    <td>18 μg/m³</td>
-                    <td class="trend-down">↓ 12%</td>
-                    <td>40 μg/m³ (annuale)</td>
-                </tr>
-                <tr>
-                    <td>PM2.5 (particolato fine)</td>
-                    <td>11 μg/m³</td>
-                    <td class="trend-stable">→ stabile</td>
-                    <td>25 μg/m³ (annuale)</td>
-                </tr>
-                <tr>
-                    <td>PM10 (particolato)</td>
-                    <td>20 μg/m³</td>
-                    <td class="trend-up">↑ 5%</td>
-                    <td>50 μg/m³ (24h)</td>
-                </tr>
-                <tr>
-                    <td>SO2 (biossido di zolfo)</td>
-                    <td>3 μg/m³</td>
-                    <td class="trend-down">↓ 8%</td>
-                    <td>125 μg/m³ (24h)</td>
-                </tr>
-            </table>
-            <p>Analisi: La qualità dell'aria a Peschiera del Garda risulta buona, con valori ben al di sotto dei limiti UE. Il NO2 mostra un trend in diminuzione, probabilmente grazie al miglioramento dell'efficienza dei veicoli. Il leggero aumento del PM10 potrebbe essere correlato all'aumento del traffico turistico.</p>
         </section>
 
         <section id="acqua" class="section">
             <h2>Qualità dell'Acqua</h2>
-            <div class="image-gallery">
-                <img src="" alt="Qualità acqua Lago di Garda">
-                <img src="https://apps.sentinel-hub.com/eo-browser/?zoom=10&lat=45.43806&lng=10.69194&themeId=DEFAULT-THEME&visualizationUrl=https%3A%2F%2Fservices.sentinel-hub.com%2Fogc%2Fwms%2Fbd86bcc0-f318-402b-a145-015f85b9427e&datasetId=S3_OLCI_L2_LFR&fromTime=2023-06-01T00%3A00%3A00.000Z&toTime=2023-06-30T23%3A59%3A59.999Z&layerId=CHL" alt="Clorofilla Lago di Garda">
-                <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/06/sentinel-2_views_lake_garda/22125922-1-eng-GB/Sentinel-2_views_Lake_Garda_pillars.jpg" alt="Sentinel-2 vista Lago di Garda">
-            </div>
+           
             <h3>Dati principali (media giugno 2023)</h3>
             <table>
                 <tr>
@@ -235,17 +263,25 @@
             <h2>Metodologia</h2>
             <p>Abbiamo utilizzato ESA EO Browser per acquisire i dati satellitari con le seguenti caratteristiche:</p>
             <ul>
-                <li><strong>Qualità dell'aria:</strong> Satellite Sentinel-5P (TROPOMI) con risoluzione spaziale di 5.5x3.5 km</li>
                 <li><strong>Qualità dell'acqua:</strong> Satellite Sentinel-3 (OLCI) con risoluzione spaziale di 300 m</li>
                 <li><strong>Periodo di analisi:</strong> Giugno 2023 (confronto con giugno 2022)</li>
-                <li><strong>Parametri atmosferici:</strong> NO2 troposferico, Aerosol Index, SO2</li>
-                <li><strong>Parametri acquatici:</strong> Temperatura superficie, concentrazione clorofilla-a, torbidità</li>
+                <li><strong>Parametri acquatici:</strong> Concentrazione clorofilla-a, torbidità</li>
             </ul>
             <p>I dati sono stati elaborati utilizzando SNAP (ESA's Sentinel Application Platform) e visualizzati tramite mappe tematiche. Per la validazione sono stati utilizzati dati in situ forniti dall'ARPA Veneto.</p>
+            
             <div class="image-gallery">
-                <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2017/10/sentinel-5p/17724112-1-eng-GB/Sentinel-5P_pillars.jpg" alt="Satellite Sentinel-5P">
-                <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2016/02/sentinel-3a/15803093-1-eng-GB/Sentinel-3A_pillars.jpg" alt="Satellite Sentinel-3">
-                <img src="https://step.esa.int/images/SNAP_8.0_1.jpg" alt="Software SNAP ESA">
+                <div class="gallery-item">
+                    <img src="c:\Users\Francesco\Downloads\Comparison_Sentinel-2_L1C__Ulyssys_Water_Quality_Viewer__(Ocean_and_Water_Bodies)_Sentinel-2_L1C__Ulyssys_Water_Quality_Viewer__(Ocean_and_Water_Bodies) (1).jpg" 
+                         onclick="openFullscreen(this)" 
+                         alt="Confronto qualità acqua Sentinel-2"
+                         class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="c:\Users\Francesco\Downloads\Comparison_Sentinel-2_L1C__Ulyssys_Water_Quality_Viewer__(Ocean_and_Water_Bodies)_Sentinel-2_L1C__Ulyssys_Water_Quality_Viewer__(Ocean_and_Water_Bodies).jpg" 
+                         onclick="openFullscreen(this)" 
+                         alt="Analisi qualità acqua Sentinel-2"
+                         class="gallery-img">
+                </div>
             </div>
         </section>
 
@@ -261,12 +297,23 @@
                     <p>Progetto realizzato per il corso di Telerilevamento Ambientale - Università degli Studi di Verona (2023).</p>
                     <p>Collaborazione con ARPA Veneto per la validazione dei dati satellitari.</p>
                 </div>
-                <div style="flex: 1;">
-                    <img src="https://www.univr.it/documents/20182/538107/logo+universita+verona.png/0e9b1f8b-4c4e-4c9c-b4e1-8e6b0e3e3e3e?t=1582279200000" alt="Logo Università di Verona" style="max-width: 200px;">
-                    <img src="https://www.arpa.veneto.it/temi-ambientali/immagini/logo-arpa-veneto/@@images/7f0a0e5a-2c5e-4d3e-9b0a-3e3e3e3e3e3e.png" alt="Logo ARPA Veneto" style="max-width: 200px; margin-left: 20px;">
+                <div style="flex: 1; text-align: center;">
+                    <img src="https://www.univr.it/documents/20182/538107/logo+universita+verona.png" 
+                         alt="Logo Università di Verona" 
+                         style="max-width: 200px; margin: 10px;">
+                    <img src="https://www.arpa.veneto.it/temi-ambientali/immagini/logo-arpa-veneto" 
+                         alt="Logo ARPA Veneto" 
+                         style="max-width: 200px; margin: 10px;">
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- Lightbox Fullscreen -->
+    <div id="fullscreenModal" class="modal">
+        <span class="close" onclick="closeFullscreen()">&times;</span>
+        <img class="modal-content" id="fullscreenImage">
+        <div id="caption"></div>
     </div>
 
     <footer>
@@ -274,5 +321,34 @@
         <p>Dati forniti da ESA Copernicus EO Browser | Validazione ARPA Veneto | Pubblicato su GitHub Pages</p>
         <p>Contatto: info@monitoraggiogarda.it</p>
     </footer>
+
+    <script>
+        // Apre l'immagine a tutto schermo
+        function openFullscreen(img) {
+            const modal = document.getElementById("fullscreenModal");
+            const modalImg = document.getElementById("fullscreenImage");
+            const captionText = document.getElementById("caption");
+            
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            captionText.innerHTML = img.alt;
+            
+            // Blocca lo scroll della pagina
+            document.body.style.overflow = "hidden";
+        }
+        
+        // Chiude il modal
+        function closeFullscreen() {
+            document.getElementById("fullscreenModal").style.display = "none";
+            document.body.style.overflow = "auto"; // Ripristina lo scroll
+        }
+        
+        // Chiude cliccando fuori dall'immagine
+        document.getElementById('fullscreenModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFullscreen();
+            }
+        });
+    </script>
 </body>
 </html>
